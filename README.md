@@ -1,17 +1,40 @@
 # argo-rollout
-1. Ejecutar 
+
+- Herramienta  de release que permite hacer rollout progresivo de tu aplicacion
+- Extiende los deployments de kubernetes con el objeto rollout
+
+## Diferencias con Argo CD
+- Argo CD es una herramienta GitOps usada para sincronizar configuraciones deseables en kubernetes
+- Soporta Helm y Kustomize
+  
+![alt text](assets/image.png)
+
+
+## Prerequisitos
+
+1. Minikube instalado
+2. Podman instalado
+3. Repositorio en github
+   
+## Paso a paso
+
+1. Clonar el repositorio https://github.com/giovany79/argo-rollout
+
+2. Crear en su cuenta de github repositorio propio con los archivos clonados
+
+3. Ejecutar 
    
    ```
    sh script/setup-all.sh
    ```
 
-2. Instalar aplicacion
+4. Instalar aplicacion
    
    ```
    sh scripts/setup-app-istio-argo.sh
     ```
 
-3. Registrar aplicación en Argo CD
+5. Registrar aplicación en Argo CD
    
     ```
    sh scripts/register-app-argocd.sh
