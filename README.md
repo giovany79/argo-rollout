@@ -36,16 +36,32 @@ URL: http://localhost:3100
 
 ### Aplicacion Rollout-demo
 
+Crea tunel entre la maquina y el servicio dentro del cluster de minikube
 ```bash
-kubectl port-forward svc/rollouts-demo-stable 8081:80
+minikube service istio-ingressgateway -n istio-system
 ```
-URL: http://localhost:8081
+
+Modificar el host
+```bash
+sudo nano /etc/hosts
+```
+Agregar la linea al final del archivo
+127.0.0.1 rollouts-demo.local
+
+
+URL: http://rollouts-demo.local:53279/
 
 ## Comandos útiles de Argo Rollouts
 
 Ver el rollout
 
 kubectl argo rollouts get rollout rollouts-demo --watch
+
+
+Cambiar la imagen
+
+kubectl argo rollouts set image rollouts-demo rollouts-demo=argoproj/rollouts-demo:yellow
+
 
 Promover
    
@@ -54,3 +70,9 @@ Promover
 ## Links
 
 Getting Started Argo Rollout with istio: https://argo-rollouts.readthedocs.io/en/stable/getting-started/istio/
+
+30 Days Of CNCF Projects | Day 9: What is Argo Rollouts + Demo:
+https://www.youtube.com/watch?v=eAF1UsOqXYI
+
+Argo Rollouts in 15 minutes!
+https://www.youtube.com/watch?v=w3xdopP4aEk
