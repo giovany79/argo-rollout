@@ -18,7 +18,7 @@ brew install argocd
 echo "Argo CD installation complete!"
 echo ""
 echo "To access Argo CD UI:"
-echo "1. Port forward: kubectl port-forward svc/argocd-server -n argocd 8080:443"
+echo "1. Port forward: kubectl port-forward svc/argocd-server -n argocd 8080:443
 echo "2. Get initial admin password: kubectl -n argocd get secret argocd-initial-admin-secret -o jsonpath='{.data.password}' | base64 -d"
 echo "3. Access UI at: https://localhost:8080"
 echo "4. Username: admin"
