@@ -26,5 +26,29 @@ echo "4. Username: admin"
 kubectl -n argocd get secret argocd-initial-admin-secret -o jsonpath='{.data.password}' | base64 -d && echo
 
 
+echo "=== Configurando Argo CD para permitir repositorios inseguros ==="
+
+# Configurar Argo CD para ser más permisivo con TLS para GitHub
+kubectl patch configmap argocd-cm -n argocd --type merge -p '{
+  "data": {
+    "repository.credentials": "- url: https://github.com\n  insecure: \"true\""
+  }
+}'
+
+echo ""
+echo "=== Reiniciando componentes de Argo CD para aplicar cambios ==="
+kubectl rollout restart deployment argocd-repo-server -n argocd
+kubectl rollout restart deployment argocd-server -n argocd
+
+echo ""
+echo "=== Esperando a que los pods se reinicien ==="
+kubectl rollout status deployment argocd-repo-server -n argocd
+kubectl rollout status deployment argocd-server -n argocd
+
+echo ""
+echo "=== Esperando 10 segundos para que los cambios se apliquen ==="
+sleep 10
+
+
 
 
