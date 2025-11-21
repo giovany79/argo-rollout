@@ -4,8 +4,11 @@
 - Extiende los deployments de kubernetes con el objeto rollout
 
 ## Diferencias con Argo CD
-- Argo CD es una herramienta GitOps usada para sincronizar configuraciones deseables en kubernetes
+- Argo CD es una herramienta declarativa de GitOps usada para sincronizar configuraciones deseables en kubernetes
 - Soporta Helm y Kustomize
+- Compara los archivos del cluster con los archivos del repositorio de git
+- La información de git es la fuente de la verdad
+- Puede tener una sincronizacion automatica o manual
   
 ![alt text](assets/image.png)
 
@@ -38,7 +41,7 @@ Facilidad para revertir cambios y mantener consistencia.
 3. Ejecutar 
    
    ```
-   sh script/setup-all.sh
+   sh scripts/setup-all.sh
    ```
 
 4. Instalar aplicacion
@@ -112,3 +115,7 @@ https://www.youtube.com/watch?v=eAF1UsOqXYI
 
 Argo Rollouts in 15 minutes!
 https://www.youtube.com/watch?v=w3xdopP4aEk
+
+
+ArgoCD Starter Guide: Full Tutorial for ArgoCD in Kubernetes
+https://www.youtube.com/watch?v=JLrR9RV9AFA
