@@ -31,6 +31,7 @@ Facilidad para revertir cambios y mantener consistencia.
 1. Minikube instalado
 2. Podman instalado
 3. Repositorio en github
+4. brew instalado
    
 ## Paso a paso
 
