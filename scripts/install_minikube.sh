@@ -66,8 +66,21 @@ echo "Usando Podman socket: $CONTAINER_HOST"
 
 # Iniciar Minikube con Podman como driver
 echo "Iniciando Minikube con Podman..."
-minikube start --driver=podman --container-runtime=containerd
+minikube start --driver=podman --container-runtime=containerd --memory=7909 --cpus=4 --addons=metrics-server --addons=ingress
 
+# --- SECCIÓN NUEVA: TUNNEL ---
+echo "🔌 Iniciando Minikube Tunnel..."
+echo "⚠️  Necesitamos permisos de administrador para asignar IPs externas."
+
+if sudo -v; then
+    # Ejecuta el tunnel en background y sin bloquear
+    nohup sudo -E minikube tunnel > /tmp/minikube_tunnel.log 2>&1 &
+    echo "✅ Tunnel activado."
+else
+    echo "⚠️  No se pudo activar el tunnel automáticamente."
+    echo "👉 Por favor, ejecuta 'sudo minikube tunnel' en otra terminal."
+fi
+# -----------------------------
 
 echo "✅ Minikube instalado y corriendo con Podman!"
 echo "Verifica el estado con: minikube status"
