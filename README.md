@@ -93,6 +93,11 @@ URL: http://rollouts-demo.local:53279/
 
 ## Comandos útiles de Argo Rollouts
 
+Consultar clave argo cd
+```shell
+kubectl -n argocd get secret argocd-initial-admin-secret -o jsonpath='{.data.password}' | base64 -d && echo
+```
+
 Ver el rollout
 ```shell
 kubectl argo rollouts get rollout rollouts-demo --watch

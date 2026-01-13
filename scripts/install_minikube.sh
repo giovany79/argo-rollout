@@ -13,7 +13,7 @@ MACHINE_EXISTS=$(podman machine list --format "{{.Name}}" 2>/dev/null | grep -c 
 
 if [ "$MACHINE_EXISTS" -eq 0 ]; then
     echo "Inicializando Podman machine..."
-    podman machine init --cpus 4 --memory 8192 --disk-size 50
+    podman machine init --cpus 2 --memory 8192 --disk-size 50
 fi
 
 # Verificar si la máquina está corriendo
@@ -66,7 +66,7 @@ echo "Usando Podman socket: $CONTAINER_HOST"
 
 # Iniciar Minikube con Podman como driver
 echo "Iniciando Minikube con Podman..."
-minikube start --driver=podman --container-runtime=containerd --memory=7909 --cpus=4 --addons=metrics-server --addons=ingress
+minikube start --driver=podman --container-runtime=containerd --memory=3621 --cpus=2 --addons=metrics-server --addons=ingress
 
 # --- SECCIÓN NUEVA: TUNNEL ---
 echo "🔌 Iniciando Minikube Tunnel..."
