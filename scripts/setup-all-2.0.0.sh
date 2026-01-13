@@ -156,6 +156,12 @@ else
     else
         echo_warning "No se encontró rollout.yaml"
     fi
+
+    if [ -f "$MANIFESTS_DIR/secret.yaml" ]; then
+        kubectl apply -f $MANIFESTS_DIR/secret.yaml
+    else
+        echo_warning "No se encontró rollout.yaml"
+    fi
     
     if [ -f "$MANIFESTS_DIR/rollouts-demo-argocd.yaml" ]; then
         echo_info "Registrando aplicación en ArgoCD..."
@@ -180,16 +186,20 @@ echo_info "✓ Argo Rollouts"
 echo ""
 echo_info "Para acceder a los dashboards:"
 echo ""
-echo_info "1. Argo CD:"
+echo_info "1. (En otra terminal)Argo CD:"
 echo_info "   kubectl port-forward svc/argocd-server -n argocd 8080:443"
 echo_info "   URL: https://localhost:8080"
 echo_info "   Username: admin"
 echo_info "   Password: ${ARGOCD_PASSWORD}"
 echo ""
-echo_info "2. Argo Rollouts:"
+echo_info "2. (En otra terminal)Argo Rollouts:"
 echo_info "   kubectl argo rollouts dashboard"
 echo ""
 echo_info "3. Verificar estado de pods:"
 echo_info "   kubectl get pods --all-namespaces"
+echo ""
+echo_info "4. Abrir tunel para acceder a la aplicación:"
+echo_info "   minikube service istio-ingressgateway -n istio-system"
+echo_info "   URL: http://rollouts-demo.local:53279"
 echo ""
 echo_info "=========================================="

@@ -6,9 +6,9 @@ metadata:
 spec:
   project: default
   source:
-    repoURL: https://github.com/argoproj/rollouts-demo.git
-    targetRevision: HEAD
-    path: .
+    repoURL: https://github.com/giovany79/argo-rollout.git
+    targetRevision: main
+    path: k8s
   destination:
     server: https://kubernetes.default.svc
     namespace: default
